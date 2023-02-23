@@ -1,6 +1,11 @@
-export const validateLogin = async(data) => {
+import axios from "axios"
+
+export const validateLogin = async(values) => {
     const configAPI = 'http://localhost:3000/claimtoken'
-    fetch(configAPI)
-        .then(res => res.json())
-        .then(data => console.log(data));
+    const { data } = await axios.post(configAPI, { data: values }, {
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        }
+    });
+    return data
 }
